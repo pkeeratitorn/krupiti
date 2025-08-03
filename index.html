@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>อินโฟกราฟิก: เทคโนโลยีการจัดการสิ่งแวดล้อม</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #F5F5F5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #68B0AB;
+            margin: 0 1rem;
+        }
+        .flow-item {
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#68B0AB]">เทคโนโลยีเพื่อโลกของเรา</h1>
+            <p class="text-lg md:text-xl mt-4 text-gray-600">เราจะใช้เทคโนโลยีเพื่อดูแลรักษาสิ่งแวดล้อมได้อย่างไร?</p>
+        </header>
+
+        <main class="space-y-10">
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#68B0AB]">เทคโนโลยีจัดการสิ่งแวดล้อมคืออะไร?</h2>
+                <p class="text-center text-gray-700 max-w-3xl mx-auto">
+                    คือการนำความรู้และเครื่องมือทางเทคโนโลยีมาใช้แก้ปัญหาหรือพัฒนากระบวนการต่างๆ เพื่อลดผลกระทบต่อสิ่งแวดล้อม ตั้งแต่การจัดการขยะ น้ำ ไปจนถึงการใช้พลังงานอย่างยั่งยืน เทคโนโลยีไม่ใช่แค่เรื่องไกลตัว แต่เป็นเครื่องมือสำคัญที่เราทุกคนสามารถใช้เพื่อสร้างความเปลี่ยนแปลงได้
+                </p>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-center mb-4">♻️ การจัดการขยะ</h3>
+                    <p class="text-gray-600 mb-4 text-center flex-grow">เทคโนโลยีช่วยให้เราจัดการขยะได้ดีขึ้น ตั้งแต่การคัดแยกเพื่อนำไปรีไซเคิล จนถึงการลดปริมาณขยะที่ต้องนำไปฝังกลบ</p>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="wasteChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4 text-center">แผนภูมินี้แสดงสัดส่วนขยะมูลฝอยทั่วไปในครัวเรือน ซึ่งการคัดแยกขยะตั้งแต่ต้นทางด้วยเทคโนโลยี จะช่วยเพิ่มอัตราการรีไซเคิลได้อย่างมหาศาล</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-center mb-4">💧 การจัดการน้ำ</h3>
+                    <p class="text-gray-600 mb-4 text-center flex-grow">ระบบบำบัดน้ำเสียอัจฉริยะใช้เซนเซอร์และ AI ตรวจสอบคุณภาพน้ำและจัดการการบำบัดให้มีประสิทธิภาพสูงสุดก่อนปล่อยคืนสู่ธรรมชาติ</p>
+                    <div class="flex flex-col items-center justify-center h-full mt-4">
+                        <div class="font-semibold text-lg mb-4">กระบวนการบำบัดน้ำอัจฉริยะ</div>
+                        <div class="flex flex-wrap items-center justify-center">
+                            <div class="flow-item p-2 bg-[#E4EFE7] rounded-lg">
+                                <div class="text-3xl">📡</div>
+                                <div>ตรวจจับ</div>
+                            </div>
+                            <div class="flow-arrow hidden sm:block"></div>
+                            <div class="flow-item p-2 bg-[#C2E2E0] rounded-lg">
+                                <div class="text-3xl">💻</div>
+                                <div>วิเคราะห์</div>
+                            </div>
+                            <div class="flow-arrow hidden sm:block"></div>
+                            <div class="flow-item p-2 bg-[#A4D4AE] rounded-lg">
+                                <div class="text-3xl">⚙️</div>
+                                <div>บำบัด</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-center mb-4">⚡️ การจัดการพลังงาน</h3>
+                    <p class="text-gray-600 mb-4 text-center flex-grow">การเปลี่ยนมาใช้พลังงานสะอาด เช่น พลังงานแสงอาทิตย์ และยานยนต์ไฟฟ้า (EV) เป็นหัวใจสำคัญในการลดการปล่อยก๊าซเรือนกระจก</p>
+                     <div class="chart-container h-64 md:h-72">
+                        <canvas id="energyChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4 text-center">กราฟเปรียบเทียบการปล่อย CO2 โดยประมาณระหว่างรถยนต์สันดาปและรถยนต์ไฟฟ้า (ที่ใช้ไฟฟ้าจากพลังงานหมุนเวียน) แสดงให้เห็นถึงผลกระทบที่แตกต่างกันอย่างชัดเจน</p>
+                </div>
+
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6 md:col-span-2 lg:col-span-3">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#68B0AB]">เทคโนโลยีปกป้องโลกในทางปฏิบัติ</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">การตรวจสอบและเฝ้าระวัง</h3>
+                        <p class="text-gray-600 mb-4">เทคโนโลยีอย่างโดรนและภาพถ่ายดาวเทียมช่วยให้เราเฝ้าระวังการบุกรุกป่าและตรวจจับไฟป่าได้รวดเร็วกว่าที่เคย ทำให้สามารถเข้าจัดการสถานการณ์ได้ทันท่วงที</p>
+                        <div class="chart-container h-64">
+                            <canvas id="monitoringChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4 text-center">กราฟสมมตินี้แสดงแนวโน้มการบุกรุกป่าที่ลดลงหลังจากการนำเทคโนโลยีโดรนเข้ามาใช้ในการลาดตระเวน</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">การเตือนภัยล่วงหน้า</h3>
+                        <p class="text-gray-600 mb-4">ระบบเซนเซอร์ตรวจจับระดับน้ำและแรงสั่นสะเทือน สามารถแจ้งเตือนภัยน้ำท่วมหรือสึนามิได้ล่วงหน้า ช่วยรักษาชีวิตและทรัพย์สินของผู้คน</p>
+                        <div class="relative p-4 border-l-4 border-[#A4D4AE] space-y-8 mt-4">
+                            <div class="relative">
+                                <div class="absolute w-4 h-4 bg-[#68B0AB] rounded-full -left-[26px] top-1/2 -translate-y-1/2"></div>
+                                <p class="font-semibold">ตรวจพบสิ่งผิดปกติ</p>
+                                <p class="text-sm text-gray-600">เซนเซอร์ตรวจจับแรงสั่นสะเทือน</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute w-4 h-4 bg-[#68B0AB] rounded-full -left-[26px] top-1/2 -translate-y-1/2"></div>
+                                <p class="font-semibold">ส่งสัญญาณเตือนภัย</p>
+                                <p class="text-sm text-gray-600">ระบบแจ้งเตือนอัตโนมัติทำงาน</p>
+                            </div>
+                             <div class="relative">
+                                <div class="absolute w-4 h-4 bg-[#68B0AB] rounded-full -left-[26px] top-1/2 -translate-y-1/2"></div>
+                                <p class="font-semibold">ประชาชนอพยพ</p>
+                                <p class="text-sm text-gray-600">มีเวลาเตรียมตัวและหนีภัย</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#68B0AB]">แล้วเรา...จะช่วยโลกได้อย่างไร?</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                        <div class="text-5xl mb-4">📱</div>
+                        <h3 class="font-bold text-lg">เป็นผู้ใช้ที่ฉลาด</h3>
+                        <p class="text-gray-600">ใช้แอปพลิเคชันช่วยจัดการพลังงานในบ้าน หรือแอปตรวจคุณภาพอากาศเพื่อดูแลสุขภาพ</p>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                        <div class="text-5xl mb-4">🧠</div>
+                        <h3 class="font-bold text-lg">เรียนรู้และแบ่งปัน</h3>
+                        <p class="text-gray-600">ศึกษาหาความรู้เกี่ยวกับเทคโนโลยีเพื่อสิ่งแวดล้อมใหม่ๆ และบอกต่อให้เพื่อนๆ และครอบครัวฟัง</p>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                        <div class="text-5xl mb-4">🌱</div>
+                        <h3 class="font-bold text-lg">เริ่มต้นจากสิ่งเล็กๆ</h3>
+                        <p class="text-gray-600">การแยกขยะ การใช้ถุงผ้า หรือการปิดไฟเมื่อไม่ใช้งาน ก็เป็นจุดเริ่มต้นที่ยิ่งใหญ่ได้</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">เทคโนโลยีเป็นเพียงเครื่องมือ แต่ <span class="font-bold text-[#68B0AB]">เราทุกคน</span> คือผู้สร้างความเปลี่ยนแปลงเพื่อโลกที่ดีกว่า</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: "'Kanit', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: "'Kanit', sans-serif"
+                    },
+                    titleFont: {
+                        family: "'Kanit', sans-serif"
+                    }
+                }
+            }
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const wasteCtx = document.getElementById('wasteChart').getContext('2d');
+        new Chart(wasteCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['ขยะอินทรีย์', 'พลาสติก', 'กระดาษ', 'ขยะอื่นๆ'],
+                datasets: [{
+                    label: 'สัดส่วนขยะ',
+                    data: [45, 25, 20, 10],
+                    backgroundColor: ['#A4D4AE', '#68B0AB', '#C2E2E0', '#E4EFE7'],
+                    borderColor: '#F5F5F5',
+                    borderWidth: 4
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        const energyCtx = document.getElementById('energyChart').getContext('2d');
+        new Chart(energyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['รถยนต์สันดาป', 'รถยนต์ไฟฟ้า (EV)'],
+                datasets: [{
+                    label: 'การปล่อย CO2 โดยประมาณ (kg/100km)',
+                    data: [18, 2],
+                    backgroundColor: ['#C2E2E0', '#68B0AB'],
+                    borderColor: ['#A4D4AE', '#A4D4AE'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const monitoringCtx = document.getElementById('monitoringChart').getContext('2d');
+        new Chart(monitoringCtx, {
+            type: 'line',
+            data: {
+                labels: ['ปีก่อน', '6 เดือนก่อน', 'ปัจจุบัน'],
+                datasets: [{
+                    label: 'พื้นที่ป่าถูกบุกรุก (ไร่)',
+                    data: [500, 250, 100],
+                    fill: true,
+                    borderColor: '#68B0AB',
+                    backgroundColor: 'rgba(104, 176, 171, 0.2)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
