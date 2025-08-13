@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom | My Website</title>
+    <!--
+        Tailwind CSS CDN for utility-first styling.
+        This provides a rich set of classes for building modern, responsive layouts.
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--
+        Google Fonts for a modern and professional typeface.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /*
+            Custom CSS for a subtle, animated gradient background.
+            This creates a more dynamic and engaging visual experience.
+        */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2b2b2b, #1e1e1e);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+            color: #e2e8f0; /* Default light text color for dark background */
+        }
+
+        /* Keyframes for the gradient background animation */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /*
+            Tailwind's dark mode classes are handled by the 'dark' class on the HTML tag.
+            This ensures that the theme can be toggled via JavaScript.
+        */
+        .dark body {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            animation: gradient-animation 15s ease infinite;
+            color: #1a202c; /* Default dark text color for light background */
+        }
+
+        /* Custom animation for fading in content on page load */
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fade-in 1s ease-out forwards;
+        }
+
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="transition-colors duration-500">
+
+    <!--
+        A toggle button for switching between dark and light mode.
+        This adds interactivity and a modern feature to the site.
+    -->
+    <button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded-full shadow-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300 z-50">
+        <!-- Sun icon for light mode, Moon for dark mode. -->
+        <svg id="sun-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4 10a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zM14 10a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM7.757 4.757a1 1 0 01-1.414 0L4.757 6.343a1 1 0 11-1.414-1.414l1.586-1.586a1 1 0 011.414 1.414zm7.072 7.072a1 1 0 01-1.414 0l-1.586-1.586a1 1 0 011.414-1.414l1.586 1.586a1 1 0 010 1.414zM4.757 14.243a1 1 0 010 1.414l-1.586 1.586a1 1 0 01-1.414-1.414l1.586-1.586a1 1 0 011.414 0zm7.072-7.072a1 1 0 010-1.414l1.586-1.586a1 1 0 111.414 1.414l-1.586 1.586a1 1 0 01-1.414 0z"></path>
+        </svg>
+        <svg id="moon-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+    </button>
+
+    <!--
+        Header and Navigation Bar Section
+        A modern, semi-transparent navigation bar with rounded corners.
+    -->
+    <header class="bg-white/10 backdrop-blur-md shadow-lg rounded-b-3xl mt-4 mx-4 md:mx-auto max-w-6xl">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Website Logo/Brand Name -->
+            <a href="#" class="text-3xl font-extrabold text-white transition-colors duration-300">
+                <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">My Website</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="flex items-center space-x-6 text-lg font-medium">
+                <li><a href="#" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-home">Home</a></li>
+                <li><a href="https://krasang.ac.th" class="text-white hover:text-blue-400 transition-colors duration-300" target="_blank" id="nav-krasangpit">KrasangPit</a></li>
+                <!-- Highlight the active page in the navigation menu with a brighter color -->
+                <li><a href="/classroom" class="text-blue-400 transition-colors duration-300 font-bold" id="nav-classroom">Classroom</a></li>
+                <li><a href="/pa" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-pa">PA</a></li>
+                <!-- Language switcher menu added -->
+                <li class="flex items-center ml-8">
+                    <!-- Added data-lang attributes and a class to identify the language buttons -->
+                    <button class="text-white font-bold hover:text-blue-400 transition-colors duration-300 lang-btn" data-lang="en">EN</button>
+                    <span class="text-white/50 mx-2">|</span>
+                    <button class="text-white hover:text-blue-400 transition-colors duration-300 lang-btn" data-lang="th">TH</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--
+        Main Content Section for Classroom
+    -->
+    <main class="container mx-auto px-6 py-12 md:py-24">
+        <div class="p-8 md:p-16 rounded-3xl bg-white/5 backdrop-blur-md shadow-2xl max-w-6xl mx-auto">
+            <!-- Title and Description for the Classroom page -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 fade-in" id="classroom-title">
+                    <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                        Student Classroom
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto fade-in delay-200" id="classroom-subtitle">
+                    Welcome to your learning hub! Below you'll find your courses, assignments, and important announcements.
+                </p>
+            </div>
+
+            <!-- Announcements Section -->
+            <div class="mb-12 fade-in delay-400">
+                <h2 class="text-2xl font-bold mb-4" id="announcements-title">Announcements</h2>
+                <div class="bg-white/10 p-6 rounded-2xl shadow-inner">
+                    <p class="text-gray-300" id="announcements-content">
+                        No new announcements at this time. Please check back later!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Courses/Subjects Section -->
+            <div class="mb-12 fade-in delay-600">
+                <h2 class="text-2xl font-bold mb-4" id="courses-title">My Subjects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Placeholder for a course card -->
+                    <div class="bg-white/10 p-6 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105">
+                        <h3 class="text-xl font-bold mb-2 text-white" id="course-1-title">Mathematics</h3>
+                        <p class="text-gray-300 mb-4" id="course-1-description">Learn about algebra, geometry, and calculus.</p>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-300 font-medium" id="course-1-link">View Subject &rarr;</a>
+                    </div>
+                    <!-- Placeholder for another course card -->
+                    <div class="bg-white/10 p-6 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105">
+                        <h3 class="text-xl font-bold mb-2 text-white" id="course-2-title">Science</h3>
+                        <p class="text-gray-300 mb-4" id="course-2-description">Explore physics, chemistry, and biology concepts.</p>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-300 font-medium" id="course-2-link">View Subject &rarr;</a>
+                    </div>
+                    <!-- Placeholder for another course card -->
+                    <div class="bg-white/10 p-6 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105">
+                        <h3 class="text-xl font-bold mb-2 text-white" id="course-3-title">History</h3>
+                        <p class="text-gray-300 mb-4" id="course-3-description">Study ancient and modern civilizations.</p>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors duration-300 font-medium" id="course-3-link">View Subject &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--
+        Footer Section
+        A simple footer with a modern, semi-transparent style.
+    -->
+    <footer class="bg-white/10 backdrop-blur-md rounded-t-3xl shadow-lg mt-12 py-4 text-center text-gray-300">
+        <div class="container mx-auto px-6">
+            <!-- Added an ID for easy access in JavaScript for translation -->
+            <p id="footer-text">&copy; 2024 My Dynamic Website. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!--
+        JavaScript to handle the dark mode and language toggle functionality.
+        This script is a placeholder. You'll need to link to the same script on all pages or include it.
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Dark Mode Toggle Logic ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            const setTheme = (isDarkMode) => {
+                if (isDarkMode) {
+                    htmlElement.classList.add('dark');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    htmlElement.classList.remove('dark');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                }
+            };
+
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (savedTheme === null && prefersDark)) {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                const isDarkMode = htmlElement.classList.contains('dark');
+                setTheme(!isDarkMode);
+                localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+            });
+
+            // --- Language Switcher Logic ---
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            // Object containing the translations for different elements
+            const translations = {
+                en: {
+                    navHome: "Home",
+                    navKrasangpit: "KrasangPit",
+                    navClassroom: "Classroom",
+                    navPa: "PA",
+                    classroomTitle: "Student Classroom",
+                    classroomSubtitle: "Welcome to your learning hub! Below you'll find your courses, assignments, and important announcements.",
+                    announcementsTitle: "Announcements",
+                    announcementsContent: "No new announcements at this time. Please check back later!",
+                    coursesTitle: "My Subjects",
+                    course1Title: "Mathematics",
+                    course1Description: "Learn about algebra, geometry, and calculus.",
+                    course1Link: "View Subject →",
+                    course2Title: "Science",
+                    course2Description: "Explore physics, chemistry, and biology concepts.",
+                    course2Link: "View Subject →",
+                    course3Title: "History",
+                    course3Description: "Study ancient and modern civilizations.",
+                    course3Link: "View Subject →",
+                    footerText: "&copy; 2024 My Dynamic Website. All rights reserved."
+                },
+                th: {
+                    navHome: "หน้าหลัก",
+                    navKrasangpit: "กระสังพิทยาคม",
+                    navClassroom: "ห้องเรียน",
+                    navPa: "ผลงาน",
+                    classroomTitle: "ห้องเรียนนักเรียน",
+                    classroomSubtitle: "ยินดีต้อนรับสู่ศูนย์กลางการเรียนรู้ของคุณ! ด้านล่างนี้คือวิชาเรียน การบ้าน และประกาศสำคัญต่างๆ",
+                    announcementsTitle: "ประกาศ",
+                    announcementsContent: "ขณะนี้ยังไม่มีประกาศใหม่ โปรดกลับมาตรวจสอบในภายหลัง!",
+                    coursesTitle: "วิชาเรียนของฉัน",
+                    course1Title: "คณิตศาสตร์",
+                    course1Description: "เรียนรู้เกี่ยวกับพีชคณิต เรขาคณิต และแคลคูลัส",
+                    course1Link: "ดูวิชา →",
+                    course2Title: "วิทยาศาสตร์",
+                    course2Description: "สำรวจแนวคิดฟิสิกส์ เคมี และชีววิทยา",
+                    course2Link: "ดูวิชา →",
+                    course3Title: "ประวัติศาสตร์",
+                    course3Description: "ศึกษาอารยธรรมโบราณและสมัยใหม่",
+                    course3Link: "ดูวิชา →",
+                    footerText: "&copy; 2024 เว็บไซต์ไดนามิกของฉัน สงวนลิขสิทธิ์"
+                }
+            };
+            
+            const switchLanguage = (lang) => {
+                document.getElementById('nav-home').textContent = translations[lang].navHome;
+                document.getElementById('nav-krasangpit').textContent = translations[lang].navKrasangpit;
+                document.getElementById('nav-classroom').textContent = translations[lang].navClassroom;
+                document.getElementById('nav-pa').textContent = translations[lang].navPa;
+                document.getElementById('classroom-title').innerHTML = `<span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">${translations[lang].classroomTitle}</span>`;
+                document.getElementById('classroom-subtitle').textContent = translations[lang].classroomSubtitle;
+                document.getElementById('announcements-title').textContent = translations[lang].announcementsTitle;
+                document.getElementById('announcements-content').textContent = translations[lang].announcementsContent;
+                document.getElementById('courses-title').textContent = translations[lang].coursesTitle;
+                document.getElementById('course-1-title').textContent = translations[lang].course1Title;
+                document.getElementById('course-1-description').textContent = translations[lang].course1Description;
+                document.getElementById('course-1-link').textContent = translations[lang].course1Link;
+                document.getElementById('course-2-title').textContent = translations[lang].course2Title;
+                document.getElementById('course-2-description').textContent = translations[lang].course2Description;
+                document.getElementById('course-2-link').textContent = translations[lang].course2Link;
+                document.getElementById('course-3-title').textContent = translations[lang].course3Title;
+                document.getElementById('course-3-description').textContent = translations[lang].course3Description;
+                document.getElementById('course-3-link').textContent = translations[lang].course3Link;
+                document.getElementById('footer-text').innerHTML = translations[lang].footerText;
+                
+                langButtons.forEach(button => {
+                    if (button.dataset.lang === lang) {
+                        button.classList.add('font-bold', 'text-white');
+                        button.classList.remove('text-white/50', 'hover:text-blue-400');
+                    } else {
+                        button.classList.remove('font-bold', 'text-white');
+                        button.classList.add('text-white/50', 'hover:text-blue-400');
+                    }
+                });
+                
+                localStorage.setItem('lang', lang);
+            };
+
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    switchLanguage(button.dataset.lang);
+                });
+            });
+
+            const savedLang = localStorage.getItem('lang') || 'en';
+            switchLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
