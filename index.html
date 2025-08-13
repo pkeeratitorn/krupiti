@@ -1,291 +1,259 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>อินโฟกราฟิก: เทคโนโลยีการจัดการสิ่งแวดล้อม</title>
+    <title>My Dynamic Homepage</title>
+    <!--
+        Tailwind CSS CDN for utility-first styling.
+        This provides a rich set of classes for building modern, responsive layouts.
+    -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--
+        Google Fonts for a modern and professional typeface.
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /*
+            Custom CSS for a subtle, animated gradient background.
+            This creates a more dynamic and engaging visual experience.
+        */
         body {
-            font-family: 'Kanit', sans-serif;
-            background-color: #F5F5F5;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2b2b2b, #1e1e1e);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+            color: #e2e8f0; /* Default light text color for dark background */
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
+
+        /* Keyframes for the gradient background animation */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
+
+        /*
+            Tailwind's dark mode classes are handled by the 'dark' class on the HTML tag.
+            This ensures that the theme can be toggled via JavaScript.
+        */
+        .dark body {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            animation: gradient-animation 15s ease infinite;
+            color: #1a202c; /* Default dark text color for light background */
         }
-        .flow-arrow::after {
-            content: '→';
-            font-size: 2rem;
-            color: #68B0AB;
-            margin: 0 1rem;
+
+        /* Custom animation for fading in content on page load */
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .flow-item {
-            text-align: center;
-            flex: 1;
-            min-width: 100px;
+
+        .fade-in {
+            animation: fade-in 1s ease-out forwards;
         }
+
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="transition-colors duration-500">
 
-    <div class="container mx-auto p-4 md:p-8">
+    <!--
+        A toggle button for switching between dark and light mode.
+        This adds interactivity and a modern feature to the site.
+    -->
+    <button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded-full shadow-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300 z-50">
+        <!-- Sun icon for light mode, Moon for dark mode. -->
+        <svg id="sun-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4 10a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zM14 10a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM7.757 4.757a1 1 0 01-1.414 0L4.757 6.343a1 1 0 11-1.414-1.414l1.586-1.586a1 1 0 011.414 1.414zm7.072 7.072a1 1 0 01-1.414 0l-1.586-1.586a1 1 0 011.414-1.414l1.586 1.586a1 1 0 010 1.414zM4.757 14.243a1 1 0 010 1.414l-1.586 1.586a1 1 0 01-1.414-1.414l1.586-1.586a1 1 0 011.414 0zm7.072-7.072a1 1 0 010-1.414l1.586-1.586a1 1 0 111.414 1.414l-1.586 1.586a1 1 0 01-1.414 0z"></path>
+        </svg>
+        <svg id="moon-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+    </button>
 
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#68B0AB]">เทคโนโลยีเพื่อโลกของเรา</h1>
-            <p class="text-lg md:text-xl mt-4 text-gray-600">เราจะใช้เทคโนโลยีเพื่อดูแลรักษาสิ่งแวดล้อมได้อย่างไร?</p>
-        </header>
+    <!--
+        Header and Navigation Bar Section
+        A modern, semi-transparent navigation bar with rounded corners.
+    -->
+    <header class="bg-white/10 backdrop-blur-md shadow-lg rounded-b-3xl mt-4 mx-4 md:mx-auto max-w-6xl">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Website Logo/Brand Name -->
+            <a href="#" class="text-3xl font-extrabold text-white transition-colors duration-300">
+                <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">My Website</span>
+            </a>
 
-        <main class="space-y-10">
-            
-            <section class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-bold text-center mb-4 text-[#68B0AB]">เทคโนโลยีจัดการสิ่งแวดล้อมคืออะไร?</h2>
-                <p class="text-center text-gray-700 max-w-3xl mx-auto">
-                    คือการนำความรู้และเครื่องมือทางเทคโนโลยีมาใช้แก้ปัญหาหรือพัฒนากระบวนการต่างๆ เพื่อลดผลกระทบต่อสิ่งแวดล้อม ตั้งแต่การจัดการขยะ น้ำ ไปจนถึงการใช้พลังงานอย่างยั่งยืน เทคโนโลยีไม่ใช่แค่เรื่องไกลตัว แต่เป็นเครื่องมือสำคัญที่เราทุกคนสามารถใช้เพื่อสร้างความเปลี่ยนแปลงได้
+            <!-- Navigation Links -->
+            <ul class="flex items-center space-x-6 text-lg font-medium">
+                <li><a href="#" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-home">Home</a></li>
+                <!-- New menu item "KrasangPit" with a link to the external website -->
+                <li><a href="https://krasang.ac.th" class="text-white hover:text-blue-400 transition-colors duration-300" target="_blank" id="nav-krasangpit">KrasangPit</a></li>
+                <!-- The "Classroom" link now points to a local page -->
+                <li><a href="/classroom" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-classroom">Classroom</a></li>
+                <!-- The "PA" link now points to a local page for contact information -->
+                <li><a href="/pa" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-pa">PA</a></li>
+                <!-- Language switcher menu added -->
+                <li class="flex items-center ml-8">
+                    <!-- Added data-lang attributes and a class to identify the language buttons -->
+                    <button class="text-white font-bold hover:text-blue-400 transition-colors duration-300 lang-btn" data-lang="en">EN</button>
+                    <span class="text-white/50 mx-2">|</span>
+                    <button class="text-white hover:text-blue-400 transition-colors duration-300 lang-btn" data-lang="th">TH</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--
+        Main Content Section (Hero Section)
+        This section uses a modern flexbox layout to place the hero text and a picture side-by-side.
+    -->
+    <main class="container mx-auto px-6 py-12 md:py-24">
+        <div class="p-8 md:p-16 rounded-3xl bg-white/5 backdrop-blur-md shadow-2xl max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <!-- Hero Text and Call-to-Action -->
+            <div class="md:w-1/2 text-center md:text-left">
+                <!-- Added an ID for easy access in JavaScript for translation -->
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 fade-in" id="hero-title">
+                    <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                        Ignite Your Learning Journey
+                    </span>
+                </h1>
+                <!-- Added an ID for easy access in JavaScript for translation -->
+                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 fade-in delay-200" id="hero-subtitle">
+                    Dive into a world of knowledge and innovation. This platform is built on modern technology to bring you the best learning experience.
                 </p>
-            </section>
+                <!-- Added an ID for easy access in JavaScript for translation -->
+                <a href="#" class="inline-block px-8 py-4 rounded-full text-white font-bold text-lg shadow-lg fade-in delay-400
+                    bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl" id="hero-cta">
+                    Explore the Classroom
+                </a>
+            </div>
+            <!-- Placeholder for a large picture -->
+            <div class="md:w-1/2 flex justify-center fade-in delay-600">
+                <img src="https://placehold.co/500x500/1E90FF/FFFFFF/png?text=Your+Picture+Here" alt="Placeholder image" class="rounded-3xl shadow-xl transform hover:scale-105 transition-transform duration-300">
+            </div>
+        </div>
+    </main>
 
-            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
-                    <h3 class="text-xl font-bold text-center mb-4">♻️ การจัดการขยะ</h3>
-                    <p class="text-gray-600 mb-4 text-center flex-grow">เทคโนโลยีช่วยให้เราจัดการขยะได้ดีขึ้น ตั้งแต่การคัดแยกเพื่อนำไปรีไซเคิล จนถึงการลดปริมาณขยะที่ต้องนำไปฝังกลบ</p>
-                    <div class="chart-container h-64 md:h-72">
-                        <canvas id="wasteChart"></canvas>
-                    </div>
-                    <p class="text-sm text-gray-500 mt-4 text-center">แผนภูมินี้แสดงสัดส่วนขยะมูลฝอยทั่วไปในครัวเรือน ซึ่งการคัดแยกขยะตั้งแต่ต้นทางด้วยเทคโนโลยี จะช่วยเพิ่มอัตราการรีไซเคิลได้อย่างมหาศาล</p>
-                </div>
+    <!--
+        Footer Section
+        A simple footer with a modern, semi-transparent style.
+    -->
+    <footer class="bg-white/10 backdrop-blur-md rounded-t-3xl shadow-lg mt-12 py-4 text-center text-gray-300">
+        <div class="container mx-auto px-6">
+            <!-- Added an ID for easy access in JavaScript for translation -->
+            <p id="footer-text">&copy; 2024 My Dynamic Website. All rights reserved.</p>
+        </div>
+    </footer>
 
-                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
-                    <h3 class="text-xl font-bold text-center mb-4">💧 การจัดการน้ำ</h3>
-                    <p class="text-gray-600 mb-4 text-center flex-grow">ระบบบำบัดน้ำเสียอัจฉริยะใช้เซนเซอร์และ AI ตรวจสอบคุณภาพน้ำและจัดการการบำบัดให้มีประสิทธิภาพสูงสุดก่อนปล่อยคืนสู่ธรรมชาติ</p>
-                    <div class="flex flex-col items-center justify-center h-full mt-4">
-                        <div class="font-semibold text-lg mb-4">กระบวนการบำบัดน้ำอัจฉริยะ</div>
-                        <div class="flex flex-wrap items-center justify-center">
-                            <div class="flow-item p-2 bg-[#E4EFE7] rounded-lg">
-                                <div class="text-3xl">📡</div>
-                                <div>ตรวจจับ</div>
-                            </div>
-                            <div class="flow-arrow hidden sm:block"></div>
-                            <div class="flow-item p-2 bg-[#C2E2E0] rounded-lg">
-                                <div class="text-3xl">💻</div>
-                                <div>วิเคราะห์</div>
-                            </div>
-                            <div class="flow-arrow hidden sm:block"></div>
-                            <div class="flow-item p-2 bg-[#A4D4AE] rounded-lg">
-                                <div class="text-3xl">⚙️</div>
-                                <div>บำบัด</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
-                    <h3 class="text-xl font-bold text-center mb-4">⚡️ การจัดการพลังงาน</h3>
-                    <p class="text-gray-600 mb-4 text-center flex-grow">การเปลี่ยนมาใช้พลังงานสะอาด เช่น พลังงานแสงอาทิตย์ และยานยนต์ไฟฟ้า (EV) เป็นหัวใจสำคัญในการลดการปล่อยก๊าซเรือนกระจก</p>
-                     <div class="chart-container h-64 md:h-72">
-                        <canvas id="energyChart"></canvas>
-                    </div>
-                    <p class="text-sm text-gray-500 mt-4 text-center">กราฟเปรียบเทียบการปล่อย CO2 โดยประมาณระหว่างรถยนต์สันดาปและรถยนต์ไฟฟ้า (ที่ใช้ไฟฟ้าจากพลังงานหมุนเวียน) แสดงให้เห็นถึงผลกระทบที่แตกต่างกันอย่างชัดเจน</p>
-                </div>
-
-            </section>
-
-            <section class="bg-white rounded-lg shadow-md p-6 md:col-span-2 lg:col-span-3">
-                <h2 class="text-2xl font-bold text-center mb-6 text-[#68B0AB]">เทคโนโลยีปกป้องโลกในทางปฏิบัติ</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">การตรวจสอบและเฝ้าระวัง</h3>
-                        <p class="text-gray-600 mb-4">เทคโนโลยีอย่างโดรนและภาพถ่ายดาวเทียมช่วยให้เราเฝ้าระวังการบุกรุกป่าและตรวจจับไฟป่าได้รวดเร็วกว่าที่เคย ทำให้สามารถเข้าจัดการสถานการณ์ได้ทันท่วงที</p>
-                        <div class="chart-container h-64">
-                            <canvas id="monitoringChart"></canvas>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-4 text-center">กราฟสมมตินี้แสดงแนวโน้มการบุกรุกป่าที่ลดลงหลังจากการนำเทคโนโลยีโดรนเข้ามาใช้ในการลาดตระเวน</p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">การเตือนภัยล่วงหน้า</h3>
-                        <p class="text-gray-600 mb-4">ระบบเซนเซอร์ตรวจจับระดับน้ำและแรงสั่นสะเทือน สามารถแจ้งเตือนภัยน้ำท่วมหรือสึนามิได้ล่วงหน้า ช่วยรักษาชีวิตและทรัพย์สินของผู้คน</p>
-                        <div class="relative p-4 border-l-4 border-[#A4D4AE] space-y-8 mt-4">
-                            <div class="relative">
-                                <div class="absolute w-4 h-4 bg-[#68B0AB] rounded-full -left-[26px] top-1/2 -translate-y-1/2"></div>
-                                <p class="font-semibold">ตรวจพบสิ่งผิดปกติ</p>
-                                <p class="text-sm text-gray-600">เซนเซอร์ตรวจจับแรงสั่นสะเทือน</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute w-4 h-4 bg-[#68B0AB] rounded-full -left-[26px] top-1/2 -translate-y-1/2"></div>
-                                <p class="font-semibold">ส่งสัญญาณเตือนภัย</p>
-                                <p class="text-sm text-gray-600">ระบบแจ้งเตือนอัตโนมัติทำงาน</p>
-                            </div>
-                             <div class="relative">
-                                <div class="absolute w-4 h-4 bg-[#68B0AB] rounded-full -left-[26px] top-1/2 -translate-y-1/2"></div>
-                                <p class="font-semibold">ประชาชนอพยพ</p>
-                                <p class="text-sm text-gray-600">มีเวลาเตรียมตัวและหนีภัย</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="text-2xl font-bold text-center mb-6 text-[#68B0AB]">แล้วเรา...จะช่วยโลกได้อย่างไร?</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                        <div class="text-5xl mb-4">📱</div>
-                        <h3 class="font-bold text-lg">เป็นผู้ใช้ที่ฉลาด</h3>
-                        <p class="text-gray-600">ใช้แอปพลิเคชันช่วยจัดการพลังงานในบ้าน หรือแอปตรวจคุณภาพอากาศเพื่อดูแลสุขภาพ</p>
-                    </div>
-                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                        <div class="text-5xl mb-4">🧠</div>
-                        <h3 class="font-bold text-lg">เรียนรู้และแบ่งปัน</h3>
-                        <p class="text-gray-600">ศึกษาหาความรู้เกี่ยวกับเทคโนโลยีเพื่อสิ่งแวดล้อมใหม่ๆ และบอกต่อให้เพื่อนๆ และครอบครัวฟัง</p>
-                    </div>
-                     <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                        <div class="text-5xl mb-4">🌱</div>
-                        <h3 class="font-bold text-lg">เริ่มต้นจากสิ่งเล็กๆ</h3>
-                        <p class="text-gray-600">การแยกขยะ การใช้ถุงผ้า หรือการปิดไฟเมื่อไม่ใช้งาน ก็เป็นจุดเริ่มต้นที่ยิ่งใหญ่ได้</p>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="text-center mt-12 py-6 border-t border-gray-300">
-            <p class="text-gray-600">เทคโนโลยีเป็นเพียงเครื่องมือ แต่ <span class="font-bold text-[#68B0AB]">เราทุกคน</span> คือผู้สร้างความเปลี่ยนแปลงเพื่อโลกที่ดีกว่า</p>
-        </footer>
-
-    </div>
-
+    <!--
+        JavaScript to handle the dark mode and language toggle functionality.
+    -->
     <script>
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            }
-            return label;
-        };
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            const langButtons = document.querySelectorAll('.lang-btn');
 
-        const defaultChartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        font: {
-                            family: "'Kanit', sans-serif"
-                        }
-                    }
+            // --- Language Switcher Logic ---
+
+            // Object containing the translations for different elements
+            const translations = {
+                en: {
+                    navHome: "Home",
+                    navKrasangpit: "KrasangPit",
+                    navClassroom: "Classroom",
+                    navPa: "PA",
+                    heroTitle: "Ignite Your Learning Journey",
+                    heroSubtitle: "Dive into a world of knowledge and innovation. This platform is built on modern technology to bring you the best learning experience.",
+                    heroCta: "Explore the Classroom",
+                    footerText: "&copy; 2024 My Dynamic Website. All rights reserved."
                 },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    },
-                    bodyFont: {
-                        family: "'Kanit', sans-serif"
-                    },
-                    titleFont: {
-                        family: "'Kanit', sans-serif"
+                th: {
+                    navHome: "หน้าหลัก",
+                    navKrasangpit: "กระสังพิทยาคม",
+                    navClassroom: "ห้องเรียน",
+                    navPa: "ผลงาน",
+                    heroTitle: "จุดประกายการเรียนรู้ของคุณ",
+                    heroSubtitle: "ดำดิ่งสู่โลกแห่งความรู้และนวัตกรรม แพลตฟอร์มนี้สร้างขึ้นจากเทคโนโลยีที่ทันสมัยเพื่อมอบประสบการณ์การเรียนรู้ที่ดีที่สุดให้แก่คุณ",
+                    heroCta: "สำรวจห้องเรียน",
+                    footerText: "&copy; 2024 เว็บไซต์ไดนามิกของฉัน สงวนลิขสิทธิ์"
+                }
+            };
+
+            // Function to update all text content based on the selected language
+            const switchLanguage = (lang) => {
+                document.getElementById('nav-home').textContent = translations[lang].navHome;
+                document.getElementById('nav-krasangpit').textContent = translations[lang].navKrasangpit;
+                document.getElementById('nav-classroom').textContent = translations[lang].navClassroom;
+                document.getElementById('nav-pa').textContent = translations[lang].navPa;
+                document.getElementById('hero-title').innerHTML = `<span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">${translations[lang].heroTitle}</span>`;
+                document.getElementById('hero-subtitle').textContent = translations[lang].heroSubtitle;
+                document.getElementById('hero-cta').textContent = translations[lang].heroCta;
+                document.getElementById('footer-text').innerHTML = translations[lang].footerText;
+                
+                // Update active language button style
+                langButtons.forEach(button => {
+                    if (button.dataset.lang === lang) {
+                        button.classList.add('font-bold', 'text-white');
+                        button.classList.remove('text-white/50', 'hover:text-blue-400');
+                    } else {
+                        button.classList.remove('font-bold', 'text-white');
+                        button.classList.add('text-white/50', 'hover:text-blue-400');
                     }
-                }
-            }
-        };
+                });
 
-        const wrapLabel = (label) => {
-            const maxLength = 16;
-            if (label.length <= maxLength) return label;
-            
-            const words = label.split(' ');
-            const lines = [];
-            let currentLine = '';
+                localStorage.setItem('lang', lang);
+            };
 
-            words.forEach(word => {
-                if ((currentLine + word).length > maxLength) {
-                    lines.push(currentLine.trim());
-                    currentLine = '';
-                }
-                currentLine += word + ' ';
+            // Add event listeners to the language buttons
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    switchLanguage(button.dataset.lang);
+                });
             });
-            lines.push(currentLine.trim());
-            return lines;
-        };
 
-        const wasteCtx = document.getElementById('wasteChart').getContext('2d');
-        new Chart(wasteCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['ขยะอินทรีย์', 'พลาสติก', 'กระดาษ', 'ขยะอื่นๆ'],
-                datasets: [{
-                    label: 'สัดส่วนขยะ',
-                    data: [45, 25, 20, 10],
-                    backgroundColor: ['#A4D4AE', '#68B0AB', '#C2E2E0', '#E4EFE7'],
-                    borderColor: '#F5F5F5',
-                    borderWidth: 4
-                }]
-            },
-            options: { ...defaultChartOptions }
-        });
+            // Set initial language on page load from localStorage, or default to English
+            const savedLang = localStorage.getItem('lang') || 'en';
+            switchLanguage(savedLang);
 
-        const energyCtx = document.getElementById('energyChart').getContext('2d');
-        new Chart(energyCtx, {
-            type: 'bar',
-            data: {
-                labels: ['รถยนต์สันดาป', 'รถยนต์ไฟฟ้า (EV)'],
-                datasets: [{
-                    label: 'การปล่อย CO2 โดยประมาณ (kg/100km)',
-                    data: [18, 2],
-                    backgroundColor: ['#C2E2E0', '#68B0AB'],
-                    borderColor: ['#A4D4AE', '#A4D4AE'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                ...defaultChartOptions,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+            // --- Dark Mode Toggle Logic (unchanged from previous version) ---
+
+            // Function to set the theme
+            const setTheme = (isDarkMode) => {
+                if (isDarkMode) {
+                    htmlElement.classList.add('dark');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                } else {
+                    htmlElement.classList.remove('dark');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
                 }
-            }
-        });
+            };
 
-        const monitoringCtx = document.getElementById('monitoringChart').getContext('2d');
-        new Chart(monitoringCtx, {
-            type: 'line',
-            data: {
-                labels: ['ปีก่อน', '6 เดือนก่อน', 'ปัจจุบัน'],
-                datasets: [{
-                    label: 'พื้นที่ป่าถูกบุกรุก (ไร่)',
-                    data: [500, 250, 100],
-                    fill: true,
-                    borderColor: '#68B0AB',
-                    backgroundColor: 'rgba(104, 176, 171, 0.2)',
-                    tension: 0.3
-                }]
-            },
-            options: {
-                ...defaultChartOptions,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+            // Check for saved theme in local storage or system preference
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (savedTheme === null && prefersDark)) {
+                setTheme(true);
+            } else {
+                setTheme(false);
             }
+
+            // Add event listener for the toggle button
+            themeToggleBtn.addEventListener('click', () => {
+                const isDarkMode = htmlElement.classList.contains('dark');
+                setTheme(!isDarkMode);
+                localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+            });
         });
     </script>
+
 </body>
 </html>
