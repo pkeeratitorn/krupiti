@@ -132,7 +132,7 @@ main {
 /* Styles เฉพาะสำหรับหน้าแรก */
 .hero {
     /* อัปเดต URL ภาพพื้นหลังที่นี่ */
-    background-image: url('\picture\modernbackground.jpg');
+    background-image: url('/picture/modernbackground.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -372,4 +372,5 @@ main {
     font-size: 0.9rem;
     color: #555;
 }
+
 
