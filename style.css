@@ -144,6 +144,7 @@ main {
     position: relative;
 }
 
+
 .hero::before {
     content: "";
     position: absolute;
@@ -372,6 +373,3 @@ main {
     font-size: 0.9rem;
     color: #555;
 }
-
-
-
