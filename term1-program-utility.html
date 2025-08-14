@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมสำเร็จรูปอรรถประโยชน์ 1 (ว20243) - Kru-X</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- เรียกใช้ไฟล์ CSS หลักที่แยกออกมา -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">Kru-X</a>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="https://krasang.ac.th" target="_blank">โรงเรียนกระสังพิทยาคม</a></li>
+            <li><a href="online-classroom.html">ห้องเรียนออนไลน์</a></li>
+            <li><a href="pa-evaluation.html">ประเมิน PA</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <h1>บทเรียนออนไลน์: โปรแกรมสำเร็จรูปอรรถประโยชน์ 1</h1>
+            <p>รายวิชา ว20243 (ภาคเรียนที่ 1)</p>
+        </section>
+
+        <section class="content-container">
+            <div class="content-section">
+                <h2>บทที่ 1: การจัดการเอกสารด้วย Google Docs</h2>
+                <p>บทเรียนนี้จะช่วยให้นักเรียนเข้าใจหลักการทำงานของ Google Docs และสามารถสร้าง แก้ไข และจัดรูปแบบเอกสารได้อย่างมีประสิทธิภาพ เพื่อใช้ในการทำงานร่วมกันกับผู้อื่น</p>
+                
+                <div class="lesson-card">
+                    <div class="lesson-card-text">
+                        <h3>1. ส่วนประกอบและเครื่องมือของ Google Docs</h3>
+                        <p>ทำความรู้จักกับหน้าตาและส่วนประกอบหลักของ Google Docs ไม่ว่าจะเป็นแถบเมนู (Menu Bar), แถบเครื่องมือ (Toolbar), พื้นที่ทำงาน (Workspace) และแถบด้านข้างที่ใช้สำหรับแชร์หรือคอมเมนต์ การเข้าใจส่วนประกอบเหล่านี้จะช่วยให้เราใช้งานได้อย่างมีประสิทธิภาพมากขึ้น</p>
+                        <a href="https://support.google.com/docs/answer/7041441?hl=th" class="button-link" target="_blank">คู่มือ: ส่วนประกอบของ Google Docs</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2>บทเรียนอื่นๆ</h2>
+                <p>เตรียมพบกับบทเรียนต่อไปในหัวข้อ: **การคำนวณและวิเคราะห์ข้อมูลด้วย Google Sheets** เร็วๆ นี้</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 เว็บไซต์ Kru-X</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

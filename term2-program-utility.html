@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมสำเร็จรูปอรรถประโยชน์ 2 (ว20244) - Kru-X</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- เรียกใช้ไฟล์ CSS หลักที่แยกออกมา -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">Kru-X</a>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="https://krasang.ac.th" target="_blank">โรงเรียนกระสังพิทยาคม</a></li>
+            <li><a href="online-classroom.html">ห้องเรียนออนไลน์</a></li>
+            <li><a href="pa-evaluation.html">ประเมิน PA</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <h1>บทเรียนออนไลน์: โปรแกรมสำเร็จรูปอรรถประโยชน์ 2</h1>
+            <p>รายวิชา ว20244 (ภาคเรียนที่ 2)</p>
+        </section>
+
+        <section class="content-container">
+            <div class="content-section">
+                <h2>บทที่ 1: การจัดการฐานข้อมูลเบื้องต้นด้วย Google Forms</h2>
+                <p>บทเรียนนี้จะช่วยให้นักเรียนสามารถสร้างแบบสอบถามออนไลน์เพื่อรวบรวมข้อมูล และสรุปผลในรูปแบบที่เข้าใจง่าย</p>
+                
+                <div class="lesson-card">
+                    <div class="lesson-card-text">
+                        <h3>1. สร้างแบบฟอร์มออนไลน์เพื่อรวบรวมข้อมูล</h3>
+                        <p>เรียนรู้วิธีการสร้าง Google Forms ตั้งแต่เริ่มต้น การตั้งคำถามในรูปแบบต่างๆ เช่น คำตอบสั้น, หลายตัวเลือก, หรือการให้คะแนนแบบสเกล เพื่อให้ได้ข้อมูลที่ครบถ้วนตามความต้องการ</p>
+                        <a href="https://support.google.com/docs/answer/2819077?hl=th" class="button-link" target="_blank">คู่มือ: สร้าง Google Forms</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>บทที่ 2: การใช้โปรแกรมตกแต่งภาพกราฟิกอย่างง่าย</h2>
+                <p>บทเรียนนี้จะช่วยให้นักเรียนสามารถสร้างงานออกแบบกราฟิกเบื้องต้นเพื่อนำไปใช้ประกอบการนำเสนอผลงานหรือสร้างสื่อการเรียนรู้</p>
+                
+                <div class="lesson-card">
+                    <div class="lesson-card-text">
+                        <h3>1. สร้างงานกราฟิกง่ายๆ ด้วยเครื่องมือออนไลน์</h3>
+                        <p>ทำความรู้จักกับโปรแกรมออกแบบกราฟิกออนไลน์ที่ใช้งานง่าย เช่น Canva หรือ Google Drawings เพื่อสร้างภาพประกอบ, Infographic หรือโปสเตอร์สำหรับนำเสนอผลงาน</p>
+                        <a href="https://www.canva.com/th_th/" class="button-link" target="_blank">เข้าสู่เว็บไซต์ Canva</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 เว็บไซต์ Kru-X</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

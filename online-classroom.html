@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ห้องเรียนออนไลน์ - Kru-X</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- เรียกใช้ไฟล์ CSS หลักที่แยกออกมา -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">Kru-X</a>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="https://krasang.ac.th" target="_blank">โรงเรียนกระสังพิทยาคม</a></li>
+            <li><a href="online-classroom.html">ห้องเรียนออนไลน์</a></li>
+            <li><a href="pa-evaluation.html">ประเมิน PA</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-header">
+            <h1>ห้องเรียนออนไลน์</h1>
+            <p>แหล่งรวมสื่อการเรียนรู้และห้องเรียนเสมือนจริงสำหรับนักเรียน</p>
+        </section>
+
+        <section class="classroom-container">
+            <!-- ภาคเรียนที่ 1 -->
+            <div class="classroom-section">
+                <h2>ภาคเรียนที่ 1</h2>
+                <div class="classroom-grid">
+                    <div class="classroom-card">
+                        <h3>รหัสวิชา ว22103 ออกแบบเทคโนโลยีฯ 3</h3>
+                        <p><strong>Kru-X</strong></p>
+                        <p>รายวิชาสำหรับนักเรียนชั้นมัธยมศึกษาปีที่ 2</p>
+                        <div class="classroom-links">
+                            <a href="https://classroom.google.com/c/NjEwODYwMTMyNTEx?cjc=fpr3ido" target="_blank">เข้าสู่ Google Classroom</a>
+                        </div>
+                    </div>
+                    <div class="classroom-card">
+                        <h3>รหัสวิชา ว20243 โปรแกรมสำเร็จรูปอรรถประโยชน์ 1</h3>
+                        <p><strong>Kru-X</strong></p>
+                        <p>เรียนรู้การใช้โปรแกรมคอมพิวเตอร์พื้นฐานที่จำเป็นต่อการเรียนรู้และการทำงาน</p>
+                        <div class="classroom-links">
+                            <a href="term1-program-utility.html">เข้าสู่เว็บเพจ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ภาคเรียนที่ 2 -->
+            <div class="classroom-section">
+                <h2>ภาคเรียนที่ 2</h2>
+                <div class="classroom-grid">
+                    <div class="classroom-card">
+                        <h3>รหัสวิชา ว22104 ออกแบบเทคโนโลยีฯ 4</h3>
+                        <p><strong>Kru-X</strong></p>
+                        <p>รายวิชาสำหรับนักเรียนชั้นมัธยมศึกษาปีที่ 2</p>
+                        <div class="classroom-links">
+                            <a href="https://classroom.google.com/c/NjM1MzAyNjkyOTY3?cjc=z24zdub" target="_blank">เข้าสู่ Google Classroom</a>
+                        </div>
+                    </div>
+                    <div class="classroom-card">
+                        <h3>รหัสวิชา ว20244 โปรแกรมสำเร็จรูปอรรถประโยชน์ 2</h3>
+                        <p><strong>Kru-X</strong></p>
+                        <p>เรียนรู้การใช้โปรแกรมขั้นสูงที่เชื่อมโยงกับรายวิชา ว20243</p>
+                        <div class="classroom-links">
+                            <a href="term2-program-utility.html">เข้าสู่เว็บเพจ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 เว็บไซต์ Kru-X</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

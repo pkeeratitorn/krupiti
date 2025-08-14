@@ -1,0 +1,374 @@
+/* style.css */
+
+/* กำหนดสีหลักของเว็บไซต์ */
+:root {
+    --primary-color: #007bff; /* สีน้ำเงิน */
+    --secondary-color: #28a745; /* สีเขียว */
+    --bg-color: #f8f9fa; /* สีพื้นหลัง */
+    --text-color: #343a40; /* สีข้อความ */
+}
+
+/* ตั้งค่าเริ่มต้นสำหรับทุกองค์ประกอบ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Navbar: แถบเมนูนำทาง */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.hamburger-menu span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--text-color);
+    margin-bottom: 4px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive สำหรับ Navbar */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-links li {
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+    .hamburger-menu {
+        display: flex;
+    }
+    .hamburger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+main {
+    padding-top: 80px; /* เพื่อหลีกเลี่ยง Navbar บังเนื้อหา */
+}
+
+/* Footer: ส่วนท้ายของเว็บไซต์ */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    margin-top: auto;
+}
+
+/* Styles เฉพาะสำหรับหน้าแรก */
+.hero {
+    /* อัปเดต URL ภาพพื้นหลังที่นี่ */
+    background-image: url('https://placehold.co/1920x1080/4a76a8/ffffff?text=Modern+Education+Background');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Styles เฉพาะสำหรับหน้าห้องเรียนออนไลน์และบทเรียน */
+.page-header {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+}
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+.page-header p {
+    font-size: 1.25rem;
+}
+
+.content-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.classroom-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+.classroom-section {
+    margin-bottom: 3rem;
+}
+.classroom-section h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    border-left: 5px solid var(--primary-color);
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}
+.classroom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.classroom-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.classroom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+.classroom-card h3 {
+    color: var(--primary-color);
+    margin: 0 0 0.5rem;
+}
+.classroom-card p {
+    margin: 0.5rem 0;
+    color: #666;
+}
+.classroom-links a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+.classroom-links a:hover {
+    background-color: var(--primary-color);
+}
+
+.content-section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+.content-section h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+.lesson-card {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    flex-direction: row;
+}
+.lesson-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.lesson-card img {
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.lesson-card-text h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 0;
+}
+.lesson-card-text p {
+    color: #555;
+    line-height: 1.8;
+}
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+.button-link:hover {
+    background-color: var(--primary-color);
+}
+@media (max-width: 768px) {
+    .lesson-card, .lesson-card:nth-child(even) {
+        flex-direction: column;
+    }
+    .lesson-card img {
+        max-width: 100%;
+    }
+}
+
+/* Styles เฉพาะสำหรับหน้าประเมิน PA */
+.pa-section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+.pa-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+.pa-subsection h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 1.5rem;
+}
+.editable-content {
+    border: 1px dashed #ccc;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: #f9f9f9;
+}
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.gallery-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.gallery-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+.gallery-item-caption {
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
