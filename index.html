@@ -1,257 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dynamic Homepage</title>
-    <!--
-        Tailwind CSS CDN for utility-first styling.
-        This provides a rich set of classes for building modern, responsive layouts.
-    -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!--
-        Google Fonts for a modern and professional typeface.
-    -->
+    <title>เว็บไซต์ Kru-X</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /*
-            Custom CSS for a subtle, animated gradient background.
-            This creates a more dynamic and engaging visual experience.
-        */
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #2b2b2b, #1e1e1e);
-            background-size: 400% 400%;
-            animation: gradient-animation 15s ease infinite;
-            color: #e2e8f0; /* Default light text color for dark background */
-        }
-
-        /* Keyframes for the gradient background animation */
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /*
-            Tailwind's dark mode classes are handled by the 'dark' class on the HTML tag.
-            This ensures that the theme can be toggled via JavaScript.
-        */
-        .dark body {
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-            animation: gradient-animation 15s ease infinite;
-            color: #1a202c; /* Default dark text color for light background */
-        }
-
-        /* Custom animation for fading in content on page load */
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fade-in 1s ease-out forwards;
-        }
-
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-600 { animation-delay: 0.6s; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- เรียกใช้ไฟล์ CSS หลักที่แยกออกมา -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="transition-colors duration-500">
+<body>
 
-    <!--
-        A toggle button for switching between dark and light mode.
-        This adds interactivity and a modern feature to the site.
-    -->
-    <button id="theme-toggle" class="fixed top-4 right-4 p-2 rounded-full shadow-lg bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300 z-50">
-        <!-- Sun icon for light mode, Moon for dark mode. -->
-        <svg id="sun-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4 10a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zM14 10a1 1 0 011-1h1a1 1 0 110 2h-1a1 1 0 01-1-1zM7.757 4.757a1 1 0 01-1.414 0L4.757 6.343a1 1 0 11-1.414-1.414l1.586-1.586a1 1 0 011.414 1.414zm7.072 7.072a1 1 0 01-1.414 0l-1.586-1.586a1 1 0 011.414-1.414l1.586 1.586a1 1 0 010 1.414zM4.757 14.243a1 1 0 010 1.414l-1.586 1.586a1 1 0 01-1.414-1.414l1.586-1.586a1 1 0 011.414 0zm7.072-7.072a1 1 0 010-1.414l1.586-1.586a1 1 0 111.414 1.414l-1.586 1.586a1 1 0 01-1.414 0z"></path>
-        </svg>
-        <svg id="moon-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-        </svg>
-    </button>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Kru-X</a>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="https://krasang.ac.th" target="_blank">โรงเรียนกระสังพิทยาคม</a></li>
+            <li><a href="online-classroom.html">ห้องเรียนออนไลน์</a></li>
+            <li><a href="pa-evaluation.html">ประเมิน PA</a></li>
+        </ul>
+    </nav>
 
-    <!--
-        Header and Navigation Bar Section
-        A modern, semi-transparent navigation bar with rounded corners.
-    -->
-    <header class="bg-white/10 backdrop-blur-md shadow-lg rounded-b-3xl mt-4 mx-4 md:mx-auto max-w-6xl">
-        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <!-- Website Logo/Brand Name -->
-            <a href="#" class="text-3xl font-extrabold text-white transition-colors duration-300">
-                <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">My Website</span>
-            </a>
-
-            <!-- Navigation Links -->
-            <ul class="flex items-center space-x-6 text-lg font-medium">
-                <li><a href="#" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-home">Home</a></li>
-                <!-- New menu item "KrasangPit" with a link to the external website -->
-                <li><a href="https://krasang.ac.th" class="text-white hover:text-blue-400 transition-colors duration-300" target="_blank" id="nav-krasangpit">KrasangPit</a></li>
-                <!-- The "Classroom" link now points to a local page -->
-                <li><a href="/classroom" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-classroom">Classroom</a></li>
-                <!-- The "PA" link now points to a local page for contact information -->
-                <li><a href="/pa" class="text-white hover:text-blue-400 transition-colors duration-300" id="nav-pa">PA</a></li>
-                <!-- Language switcher menu added -->
-                <li class="flex items-center ml-8">
-                    <!-- Added data-lang attributes and a class to identify the language buttons -->
-                    <button class="text-white font-bold hover:text-blue-400 transition-colors duration-300 lang-btn" data-lang="en">EN</button>
-                    <span class="text-white/50 mx-2">|</span>
-                    <button class="text-white hover:text-blue-400 transition-colors duration-300 lang-btn" data-lang="th">TH</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!--
-        Main Content Section (Hero Section)
-        This section uses a modern flexbox layout to place the hero text and a picture side-by-side.
-    -->
-    <main class="container mx-auto px-6 py-12 md:py-24">
-        <div class="p-8 md:p-16 rounded-3xl bg-white/5 backdrop-blur-md shadow-2xl max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-            <!-- Hero Text and Call-to-Action -->
-            <div class="md:w-1/2 text-center md:text-left">
-                <!-- Added an ID for easy access in JavaScript for translation -->
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 fade-in" id="hero-title">
-                    <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                        Ignite Your Learning Journey
-                    </span>
-                </h1>
-                <!-- Added an ID for easy access in JavaScript for translation -->
-                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 fade-in delay-200" id="hero-subtitle">
-                    Dive into a world of knowledge and innovation. This platform is built on modern technology to bring you the best learning experience.
-                </p>
-                <!-- Added an ID for easy access in JavaScript for translation -->
-                <a href="#" class="inline-block px-8 py-4 rounded-full text-white font-bold text-lg shadow-lg fade-in delay-400
-                    bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl" id="hero-cta">
-                    Explore the Classroom
-                </a>
-            </div>
-            <!-- Placeholder for a large picture -->
-            <div class="md:w-1/2 flex justify-center fade-in delay-600">
-                <img src="https://placehold.co/500x500/1E90FF/FFFFFF/png?text=Your+Picture+Here" alt="Placeholder image" class="rounded-3xl shadow-xl transform hover:scale-105 transition-transform duration-300">
-            </div>
+    <div class="hero">
+        <!-- อัปเดต URL ภาพพื้นหลังที่นี่ -->
+        <div class="hero-content">
+            <h1>ยินดีต้อนรับสู่เว็บไซต์ Kru-X</h1>
+            <p>แหล่งรวมสื่อการเรียนรู้ เทคโนโลยี และการประเมินผลการปฏิบัติงานสำหรับครูยุคใหม่</p>
+            <a href="online-classroom.html" class="cta-button">เข้าสู่ห้องเรียนออนไลน์</a>
         </div>
-    </main>
+    </div>
 
-    <!--
-        Footer Section
-        A simple footer with a modern, semi-transparent style.
-    -->
-    <footer class="bg-white/10 backdrop-blur-md rounded-t-3xl shadow-lg mt-12 py-4 text-center text-gray-300">
-        <div class="container mx-auto px-6">
-            <!-- Added an ID for easy access in JavaScript for translation -->
-            <p id="footer-text">&copy; 2024 My Dynamic Website. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!--
-        JavaScript to handle the dark mode and language toggle functionality.
-    -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const htmlElement = document.documentElement;
-            const sunIcon = document.getElementById('sun-icon');
-            const moonIcon = document.getElementById('moon-icon');
-            const langButtons = document.querySelectorAll('.lang-btn');
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
 
-            // --- Language Switcher Logic ---
-
-            // Object containing the translations for different elements
-            const translations = {
-                en: {
-                    navHome: "Home",
-                    navKrasangpit: "KrasangPit",
-                    navClassroom: "Classroom",
-                    navPa: "PA",
-                    heroTitle: "Ignite Your Learning Journey",
-                    heroSubtitle: "Dive into a world of knowledge and innovation. This platform is built on modern technology to bring you the best learning experience.",
-                    heroCta: "Explore the Classroom",
-                    footerText: "&copy; 2024 My Dynamic Website. All rights reserved."
-                },
-                th: {
-                    navHome: "หน้าหลัก",
-                    navKrasangpit: "กระสังพิทยาคม",
-                    navClassroom: "ห้องเรียน",
-                    navPa: "ผลงาน",
-                    heroTitle: "จุดประกายการเรียนรู้ของคุณ",
-                    heroSubtitle: "ดำดิ่งสู่โลกแห่งความรู้และนวัตกรรม แพลตฟอร์มนี้สร้างขึ้นจากเทคโนโลยีที่ทันสมัยเพื่อมอบประสบการณ์การเรียนรู้ที่ดีที่สุดให้แก่คุณ",
-                    heroCta: "สำรวจห้องเรียน",
-                    footerText: "&copy; 2024 เว็บไซต์ไดนามิกของฉัน สงวนลิขสิทธิ์"
-                }
-            };
-
-            // Function to update all text content based on the selected language
-            const switchLanguage = (lang) => {
-                document.getElementById('nav-home').textContent = translations[lang].navHome;
-                document.getElementById('nav-krasangpit').textContent = translations[lang].navKrasangpit;
-                document.getElementById('nav-classroom').textContent = translations[lang].navClassroom;
-                document.getElementById('nav-pa').textContent = translations[lang].navPa;
-                document.getElementById('hero-title').innerHTML = `<span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">${translations[lang].heroTitle}</span>`;
-                document.getElementById('hero-subtitle').textContent = translations[lang].heroSubtitle;
-                document.getElementById('hero-cta').textContent = translations[lang].heroCta;
-                document.getElementById('footer-text').innerHTML = translations[lang].footerText;
-                
-                // Update active language button style
-                langButtons.forEach(button => {
-                    if (button.dataset.lang === lang) {
-                        button.classList.add('font-bold', 'text-white');
-                        button.classList.remove('text-white/50', 'hover:text-blue-400');
-                    } else {
-                        button.classList.remove('font-bold', 'text-white');
-                        button.classList.add('text-white/50', 'hover:text-blue-400');
-                    }
-                });
-
-                localStorage.setItem('lang', lang);
-            };
-
-            // Add event listeners to the language buttons
-            langButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    switchLanguage(button.dataset.lang);
-                });
-            });
-
-            // Set initial language on page load from localStorage, or default to English
-            const savedLang = localStorage.getItem('lang') || 'en';
-            switchLanguage(savedLang);
-
-            // --- Dark Mode Toggle Logic (unchanged from previous version) ---
-
-            // Function to set the theme
-            const setTheme = (isDarkMode) => {
-                if (isDarkMode) {
-                    htmlElement.classList.add('dark');
-                    sunIcon.classList.add('hidden');
-                    moonIcon.classList.remove('hidden');
-                } else {
-                    htmlElement.classList.remove('dark');
-                    sunIcon.classList.remove('hidden');
-                    moonIcon.classList.add('hidden');
-                }
-            };
-
-            // Check for saved theme in local storage or system preference
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (savedTheme === 'dark' || (savedTheme === null && prefersDark)) {
-                setTheme(true);
-            } else {
-                setTheme(false);
-            }
-
-            // Add event listener for the toggle button
-            themeToggleBtn.addEventListener('click', () => {
-                const isDarkMode = htmlElement.classList.contains('dark');
-                setTheme(!isDarkMode);
-                localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
-            });
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
         });
     </script>
 
