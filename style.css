@@ -132,7 +132,7 @@ main {
 /* Styles เฉพาะสำหรับหน้าแรก */
 .hero {
     /* อัปเดต URL ภาพพื้นหลังที่นี่ */
-    background-image: url('https://placehold.co/1920x1080/4a76a8/ffffff?text=Modern+Education+Background');
+    background-image: url('\picture\modernbackground.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -372,3 +372,4 @@ main {
     font-size: 0.9rem;
     color: #555;
 }
+
