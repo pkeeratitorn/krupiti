@@ -1,11 +1,13 @@
 /* style.css */
 
-/* กำหนดสีหลักของเว็บไซต์ */
+/* กำหนดสีหลักของเว็บไซต์ และใช้ CSS Variables เพื่อให้ปรับแก้ได้ง่าย */
 :root {
-    --primary-color: #007bff; /* สีน้ำเงิน */
+    --primary-color: #5465ff; /* สีน้ำเงินที่สว่างขึ้น */
     --secondary-color: #28a745; /* สีเขียว */
-    --bg-color: #f8f9fa; /* สีพื้นหลัง */
-    --text-color: #343a40; /* สีข้อความ */
+    --bg-color: #f0f4f8; /* สีพื้นหลังที่นุ่มนวล */
+    --text-color: #34495e; /* สีข้อความที่เข้มขึ้น */
+    --accent-color: #e74c3c; /* สีสำหรับเน้น */
+    --link-hover-color: #3498db; /* สีเมื่อนำเมาส์ไปวางบนลิงก์ */
 }
 
 /* ตั้งค่าเริ่มต้นสำหรับทุกองค์ประกอบ */
@@ -15,11 +17,18 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth; /* ทำให้การเลื่อนหน้าเป็นไปอย่างราบรื่น */
+}
+
 body {
     font-family: 'Kanit', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Navbar: แถบเมนูนำทาง */
@@ -33,7 +42,7 @@ body {
     align-items: center;
     padding: 1rem 2rem;
     background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
@@ -42,11 +51,17 @@ body {
     font-weight: 600;
     color: var(--primary-color);
     text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.navbar .logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center;
 }
 
 .nav-links li {
@@ -57,11 +72,28 @@ body {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 400;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--secondary-color);
+    color: var(--link-hover-color);
+    transform: translateY(-2px);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .hamburger-menu {
@@ -118,6 +150,7 @@ body {
 
 main {
     padding-top: 80px; /* เพื่อหลีกเลี่ยง Navbar บังเนื้อหา */
+    flex-grow: 1; /* ทำให้ main ขยายเต็มพื้นที่ที่เหลือ */
 }
 
 /* Footer: ส่วนท้ายของเว็บไซต์ */
@@ -131,7 +164,6 @@ main {
 
 /* Styles เฉพาะสำหรับหน้าแรก */
 .hero {
-    /* อัปเดต URL ภาพพื้นหลังที่นี่ */
     background-image: url('picture/modernbackground.jpg');
     background-size: cover;
     background-position: center;
@@ -142,8 +174,8 @@ main {
     text-align: center;
     color: white;
     position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
-
 
 .hero::before {
     content: "";
@@ -153,23 +185,32 @@ main {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px); /* เพิ่มความเบลอเล็กน้อย */
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
     padding: 2rem;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .hero p {
     font-size: 1.5rem;
     max-width: 800px;
     margin: auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .cta-button {
@@ -181,11 +222,14 @@ main {
     text-decoration: none;
     font-size: 1.2rem;
     border-radius: 50px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
-    background-color: var(--primary-color);
+    background-color: var(--link-hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Styles เฉพาะสำหรับหน้าห้องเรียนออนไลน์และบทเรียน */
@@ -194,6 +238,7 @@ main {
     text-align: center;
     background-color: var(--primary-color);
     color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 .page-header h1 {
     font-size: 3rem;
@@ -238,7 +283,7 @@ main {
 }
 .classroom-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    box-shadow: 8px 30px rgba(0,0,0,0.1);
 }
 .classroom-card h3 {
     color: var(--primary-color);
@@ -322,54 +367,39 @@ main {
     }
 }
 
-/* Styles เฉพาะสำหรับหน้าประเมิน PA */
-.pa-section {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    padding: 2rem;
-    margin-bottom: 3rem;
-}
-.pa-section h2 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    border-bottom: 3px solid var(--secondary-color);
-    padding-bottom: 0.5rem;
+/* Tab styles for pa-evaluation.html */
+.tab-menu {
+    display: flex;
+    justify-content: center;
     margin-bottom: 2rem;
-}
-.pa-subsection h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 1.5rem;
-}
-.editable-content {
-    border: 1px dashed #ccc;
-    padding: 1rem;
-    margin-top: 1rem;
-    background-color: #f9f9f9;
-}
-.image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
 }
-.gallery-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+.tab-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #e9ecef;
+    color: #6c757d;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-.gallery-item img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+
+.tab-button:hover {
+    background-color: #dee2e6;
+}
+
+.tab-button.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+    display: none;
+}
+.tab-content.active {
     display: block;
-}
-.gallery-item-caption {
-    padding: 0.75rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #555;
 }
