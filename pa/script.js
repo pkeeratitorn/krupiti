@@ -120,36 +120,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 });
 
-.btn-download {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s, background 0.2s;
-}
-
-.btn-download:hover {
-    background-color: #1e40af;
-    transform: translateY(-2px);
-}
-
-.pdf-container {
-    width: 100%;
-    height: 800px; /* ความสูงของหน้าต่าง PDF */
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #f9fafb;
-}
-
-/* ปรับความสูง PDF สำหรับหน้าจอมือถือ */
-@media (max-width: 768px) {
-    .pdf-container {
-        height: 500px;
-    }
-}
