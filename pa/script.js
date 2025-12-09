@@ -97,26 +97,40 @@ function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
 }
 
-// ปุ่ม Back to Top
 const backToTopBtn = document.getElementById('backToTopBtn');
-window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        backToTopBtn.classList.add('show');
-    } else {
-        backToTopBtn.classList.remove('show');
-    }
-};
+if (backToTopBtn) {
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    };
+}
 
-// Smooth Scroll
+// 4. Smooth Scroll (ปรับปรุงให้รองรับปุ่มกลับสู่ด้านบน)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // ป้องกันการกระโดดแบบปกติ
         const targetId = this.getAttribute('href');
+
+        // กรณีเป็นปุ่มกลับสู่ด้านบน (href="#")
+        if (targetId === '#') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            return;
+        }
+
+        // กรณีเป็นลิ้งค์ไปยังส่วนต่างๆ (href="#info", href="#part1" ฯลฯ)
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
         }
     });
-
 });
+
 
