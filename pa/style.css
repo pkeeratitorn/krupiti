@@ -439,4 +439,22 @@ footer {
     .pdf-container {
         height: 500px; /* ลดความสูง PDF ในมือถือ */
     }
+
+}
+
+.pdf-container {
+    width: 100%;
+    height: 800px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden; /* สำคัญมาก */
+    background-color: #f9fafb;
+    position: relative; /* เพื่อให้จัดตำแหน่งภายในได้ง่าย */
+}
+
+/* ปรับความสูงสำหรับมือถือ */
+@media (max-width: 768px) {
+    .pdf-container {
+        height: 400px; /* ลดความสูงลงไม่ให้กินพื้นที่เกินไป */
+    }
 }
