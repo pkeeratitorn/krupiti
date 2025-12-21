@@ -86,16 +86,47 @@ function renderSite() {
         });
     }
 
-    // 7. PDF Document
+// --------------------------------------------------------
+    // 7. PDF Document (ปรับปรุงให้รองรับ iOS)
+    // --------------------------------------------------------
     const pdfBtn = document.getElementById('pdf-download-btn');
     const pdfFrame = document.getElementById('pdf-iframe');
-    const pdfLink = document.getElementById('pdf-fallback-link');
-    if (d.document.fileName) {
-        if(pdfBtn) pdfBtn.href = d.document.fileName;
-        if(pdfFrame) pdfFrame.src = `${d.document.fileName}#toolbar=0`;
-        if(pdfLink) pdfLink.href = d.document.fileName;
-    }
+    const pdfContainer = document.querySelector('.pdf-container'); // เลือกกรอบที่หุ้ม iframe
 
+    if (d.document.fileName) {
+        // 1. ตั้งค่าปุ่มดาวน์โหลดหลัก (ทำงานทุกอุปกรณ์)
+        if (pdfBtn) pdfBtn.href = d.document.fileName;
+
+        // 2. ตรวจสอบว่าเป็น iOS หรือไม่ (iPhone/iPad)
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        if (isIOS) {
+            // 🍎 กรณีเป็น iOS: ซ่อน iframe แล้วโชว์ปุ่มกดแทน (แก้ปัญหาจอดำ/เลื่อนไม่ได้)
+            if (pdfContainer) {
+                pdfContainer.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: #f3f4f6; text-align: center; padding: 20px;">
+                        <p style="font-size: 3rem; margin-bottom: 10px;">📄</p>
+                        <p style="margin-bottom: 20px; color: #4b5563;">
+                            บน iOS (iPhone/iPad) กรุณากดปุ่มด้านล่าง<br>เพื่อเปิดอ่านเอกสารฉบับเต็ม
+                        </p>
+                        <a href="${d.document.fileName}" target="_blank" 
+                           style="background-color: var(--primary-color); color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold;">
+                           เปิดอ่านไฟล์ PDF
+                        </a>
+                    </div>
+                `;
+            }
+        } else {
+            // 🤖/💻 กรณีเป็น Android หรือ PC: โชว์ไฟล์ใน iframe ตามปกติ
+            if (pdfFrame) pdfFrame.src = `${d.document.fileName}#toolbar=0`;
+            
+            // เพิ่ม Link สำรองกรณี iframe ไม่โหลด
+            const pdfLink = document.getElementById('pdf-fallback-link');
+            if (pdfLink) pdfLink.href = d.document.fileName;
+        }
+    }
+    
     // 8. สร้าง Galleries (Evidence & Certificate)
     createGallery(d.evidence, 'evidence-gallery', 'evidence-count-badge', 'ภาพกิจกรรม');
     createGallery(d.certificates, 'cert-gallery', 'cert-count-badge', 'เกียรติบัตรฉบับ');
@@ -182,4 +213,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // เริ่มทำงานเมื่อโหลดหน้าเว็บ
+
 window.onload = renderSite;
