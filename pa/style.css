@@ -458,3 +458,54 @@ footer {
         height: 400px; /* ลดความสูงลงไม่ให้กินพื้นที่เกินไป */
     }
 }
+
+/* =========================================
+   UI พิเศษสำหรับ iOS (ปุ่มใหญ่ + อนิเมชั่น)
+   ========================================= */
+
+/* กล่องจัดกึ่งกลาง */
+.ios-pdf-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f3f4f6;
+}
+
+/* ดีไซน์ปุ่มให้เด่นสะดุดตา */
+.btn-ios-large {
+    display: inline-block;
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); /* สีแดงไล่เฉดให้ดูสำคัญ */
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 20px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4); /* เงาสีแดงฟุ้งๆ */
+    transition: transform 0.2s;
+    
+    /* เพิ่มอนิเมชั่นให้ปุ่มขยับได้ */
+    animation: pulse-red 2s infinite;
+}
+
+.btn-ios-large:active {
+    transform: scale(0.95); /* กดยุบลงนิดนึง */
+}
+
+/* สร้างอนิเมชั่นวิบวับ (Pulse Effect) */
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        transform: scale(1);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(239, 68, 68, 0);
+        transform: scale(1.05); /* ขยายใหญ่ขึ้นนิดนึง */
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+        transform: scale(1);
+    }
+}
